@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CbLanguageViewDlg" widgetVar="CbLanguageViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewCbLanguageTitle}" closeOnEscape="true">
+
+            <h:form id="CbLanguageViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{cbLanguageController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewCbLanguageLabel_idlanguage}"/>
+                        <h:outputText value="#{cbLanguageController.selected.idlanguage}" title="#{myBundle.ViewCbLanguageTitle_idlanguage}"/>
+
+                        <h:outputText value="#{myBundle.ViewCbLanguageLabel_namelanguage}"/>
+                        <h:outputText value="#{cbLanguageController.selected.namelanguage}" title="#{myBundle.ViewCbLanguageTitle_namelanguage}"/>
+
+                        <h:outputText value="#{myBundle.ViewCbLanguageLabel_isactive}"/>
+                        <h:outputText value="#{cbLanguageController.selected.isactive}" title="#{myBundle.ViewCbLanguageTitle_isactive}"/>
+
+                        <h:outputText value="#{myBundle.ViewCbLanguageLabel_languageiso}"/>
+                        <h:outputText value="#{cbLanguageController.selected.languageiso}" title="#{myBundle.ViewCbLanguageTitle_languageiso}"/>
+
+                        <h:outputText value="#{myBundle.ViewCbLanguageLabel_countrycode}"/>
+                        <h:outputText value="#{cbLanguageController.selected.countrycode}" title="#{myBundle.ViewCbLanguageTitle_countrycode}"/>
+
+                        <h:outputText value="#{myBundle.ViewCbLanguageLabel_isbaselanguage}"/>
+                        <h:outputText value="#{cbLanguageController.selected.isbaselanguage}" title="#{myBundle.ViewCbLanguageTitle_isbaselanguage}"/>
+
+                        <h:outputText value="#{myBundle.ViewCbLanguageLabel_issystemlanguage}"/>
+                        <h:outputText value="#{cbLanguageController.selected.issystemlanguage}" title="#{myBundle.ViewCbLanguageTitle_issystemlanguage}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('CbLanguageViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="CbLanguageListForm">
+
+        <p:panel header="#{myBundle.ListCbLanguageTitle}">
+            <p:contextMenu id="CbLanguageDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('CbLanguageListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('CbLanguageListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('CbLanguageListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('CbLanguageListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{cbLanguageController.items}"
+                         lazy="false"
+                         rowKey="#{item.idlanguage}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{cbLanguageController.selected}"
+                         filteredValue="#{cbLanguageController.filteredItems}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{cbLanguageController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idlanguage}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:CbLanguageDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:CbLanguageDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('CbLanguageListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idlanguage}" filterBy="#{item.idlanguage}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListCbLanguageTitle_idlanguage}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idlanguage}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.namelanguage}" filterBy="#{item.namelanguage}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListCbLanguageTitle_namelanguage}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.namelanguage}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.isactive}" filterBy="#{item.isactive}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListCbLanguageTitle_isactive}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.isactive}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.languageiso}" filterBy="#{item.languageiso}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListCbLanguageTitle_languageiso}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.languageiso}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.countrycode}" filterBy="#{item.countrycode}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListCbLanguageTitle_countrycode}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.countrycode}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.isbaselanguage}" filterBy="#{item.isbaselanguage}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListCbLanguageTitle_isbaselanguage}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.isbaselanguage}"/>
+                </p:column>
+
+                <ui:remove>
+                    <p:column sortBy="#{item.issystemlanguage}" filterBy="#{item.issystemlanguage}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListCbLanguageTitle_issystemlanguage}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.issystemlanguage}"/>
+                    </p:column>
+                </ui:remove>
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{cbLanguageController.prepareCreate}" update=":CbLanguageCreateForm" oncomplete="PF('CbLanguageCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":CbLanguageViewForm" oncomplete="PF('CbLanguageViewDialog').show()" disabled="#{empty cbLanguageController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":CbLanguageEditForm" oncomplete="PF('CbLanguageEditDialog').show()" disabled="#{empty cbLanguageController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{cbLanguageController.delete}" update=":growl,datalist" disabled="#{empty cbLanguageController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

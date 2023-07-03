@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="CbLanguageEditDlg" widgetVar="CbLanguageEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditCbLanguageTitle}" closeOnEscape="true">
+
+            <h:form id="CbLanguageEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{cbLanguageController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditCbLanguageLabel_idlanguage}" for="idlanguage" />
+                        <h:outputText id="idlanguage" value="#{cbLanguageController.selected.idlanguage}" />
+
+                        <p:outputLabel value="#{myBundle.EditCbLanguageLabel_namelanguage}" for="namelanguage" />
+                        <p:inputText id="namelanguage" value="#{cbLanguageController.selected.namelanguage}" title="#{myBundle.EditCbLanguageTitle_namelanguage}" required="true" requiredMessage="#{myBundle.EditCbLanguageRequiredMessage_namelanguage}" size="60" maxlength="60"/>
+
+                        <p:outputLabel value="#{myBundle.EditCbLanguageLabel_isactive}" for="isactive" />
+                        <p:inputText id="isactive" value="#{cbLanguageController.selected.isactive}" title="#{myBundle.EditCbLanguageTitle_isactive}" required="true" requiredMessage="#{myBundle.EditCbLanguageRequiredMessage_isactive}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.EditCbLanguageLabel_languageiso}" for="languageiso" />
+                        <p:inputText id="languageiso" value="#{cbLanguageController.selected.languageiso}" title="#{myBundle.EditCbLanguageTitle_languageiso}" size="2" maxlength="2"/>
+
+                        <p:outputLabel value="#{myBundle.EditCbLanguageLabel_countrycode}" for="countrycode" />
+                        <p:inputText id="countrycode" value="#{cbLanguageController.selected.countrycode}" title="#{myBundle.EditCbLanguageTitle_countrycode}" size="2" maxlength="2"/>
+
+                        <p:outputLabel value="#{myBundle.EditCbLanguageLabel_isbaselanguage}" for="isbaselanguage" />
+                        <p:inputText id="isbaselanguage" value="#{cbLanguageController.selected.isbaselanguage}" title="#{myBundle.EditCbLanguageTitle_isbaselanguage}" required="true" requiredMessage="#{myBundle.EditCbLanguageRequiredMessage_isbaselanguage}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.EditCbLanguageLabel_issystemlanguage}" for="issystemlanguage" />
+                        <p:inputText id="issystemlanguage" value="#{cbLanguageController.selected.issystemlanguage}" title="#{myBundle.EditCbLanguageTitle_issystemlanguage}" required="true" requiredMessage="#{myBundle.EditCbLanguageRequiredMessage_issystemlanguage}" size="1" maxlength="1"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cbLanguageController.save}" value="#{myBundle.Save}" update="display,:CbLanguageListForm:datalist,:CbLanguageListForm:CbLanguageDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CbLanguageEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('CbLanguageEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="CbLanguageCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateCbLanguageTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:CbLanguageListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="CbLanguageCreateForm">
+
+                <h:panelGroup id="display" rendered="#{cbLanguageController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_idlanguage}" for="idlanguage" />
+                            <p:inputText id="idlanguage" value="#{cbLanguageController.selected.idlanguage}" title="#{myBundle.CreateCbLanguageTitle_idlanguage}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_idlanguage}" size="6" maxlength="6"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_namelanguage}" for="namelanguage" />
+                            <p:inputText id="namelanguage" value="#{cbLanguageController.selected.namelanguage}" title="#{myBundle.CreateCbLanguageTitle_namelanguage}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_namelanguage}" size="60" maxlength="60"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_isactive}" for="isactive" />
+                            <p:inputText id="isactive" value="#{cbLanguageController.selected.isactive}" title="#{myBundle.CreateCbLanguageTitle_isactive}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_isactive}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_languageiso}" for="languageiso" />
+                            <p:inputText id="languageiso" value="#{cbLanguageController.selected.languageiso}" title="#{myBundle.CreateCbLanguageTitle_languageiso}" size="2" maxlength="2"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_countrycode}" for="countrycode" />
+                            <p:inputText id="countrycode" value="#{cbLanguageController.selected.countrycode}" title="#{myBundle.CreateCbLanguageTitle_countrycode}" size="2" maxlength="2"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_isbaselanguage}" for="isbaselanguage" />
+                            <p:inputText id="isbaselanguage" value="#{cbLanguageController.selected.isbaselanguage}" title="#{myBundle.CreateCbLanguageTitle_isbaselanguage}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_isbaselanguage}" size="1" maxlength="1"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_issystemlanguage}" for="issystemlanguage" />
+                            <p:inputText id="issystemlanguage" value="#{cbLanguageController.selected.issystemlanguage}" title="#{myBundle.CreateCbLanguageTitle_issystemlanguage}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_issystemlanguage}" size="1" maxlength="1"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{cbLanguageController.saveNew}" value="#{myBundle.Save}" update="display,:CbLanguageListPage:CbLanguageListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:CbLanguageListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

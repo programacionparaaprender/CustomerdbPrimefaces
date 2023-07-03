@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CbLanguageCreateDlg" widgetVar="CbLanguageCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateCbLanguageTitle}" closeOnEscape="true">
+
+            <h:form id="CbLanguageCreateForm">
+
+                <h:panelGroup id="display" rendered="#{cbLanguageController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_idlanguage}" for="idlanguage" />
+                        <p:inputText id="idlanguage" value="#{cbLanguageController.selected.idlanguage}" title="#{myBundle.CreateCbLanguageTitle_idlanguage}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_idlanguage}" size="6" maxlength="6"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_namelanguage}" for="namelanguage" />
+                        <p:inputText id="namelanguage" value="#{cbLanguageController.selected.namelanguage}" title="#{myBundle.CreateCbLanguageTitle_namelanguage}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_namelanguage}" size="60" maxlength="60"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_isactive}" for="isactive" />
+                        <p:inputText id="isactive" value="#{cbLanguageController.selected.isactive}" title="#{myBundle.CreateCbLanguageTitle_isactive}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_isactive}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_languageiso}" for="languageiso" />
+                        <p:inputText id="languageiso" value="#{cbLanguageController.selected.languageiso}" title="#{myBundle.CreateCbLanguageTitle_languageiso}" size="2" maxlength="2"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_countrycode}" for="countrycode" />
+                        <p:inputText id="countrycode" value="#{cbLanguageController.selected.countrycode}" title="#{myBundle.CreateCbLanguageTitle_countrycode}" size="2" maxlength="2"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_isbaselanguage}" for="isbaselanguage" />
+                        <p:inputText id="isbaselanguage" value="#{cbLanguageController.selected.isbaselanguage}" title="#{myBundle.CreateCbLanguageTitle_isbaselanguage}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_isbaselanguage}" size="1" maxlength="1"/>
+
+                        <p:outputLabel value="#{myBundle.CreateCbLanguageLabel_issystemlanguage}" for="issystemlanguage" />
+                        <p:inputText id="issystemlanguage" value="#{cbLanguageController.selected.issystemlanguage}" title="#{myBundle.CreateCbLanguageTitle_issystemlanguage}" required="true" requiredMessage="#{myBundle.CreateCbLanguageRequiredMessage_issystemlanguage}" size="1" maxlength="1"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cbLanguageController.saveNew}" value="#{myBundle.Save}" update="display,:CbLanguageListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('CbLanguageCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('CbLanguageCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
