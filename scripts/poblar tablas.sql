@@ -1,4 +1,5 @@
 use customerdb;
+
 -- Data for table: cb_language
 INSERT INTO cb_language( idlanguage, isactive, namelanguage, languageiso, countrycode,  isbaselanguage, issystemlanguage ) VALUES ('ar_AE', 'Y', 'Arabic (United Arab Emirates)', 'ar', 'AE', 'N', 'N' );
 INSERT INTO cb_language( idlanguage, isactive, namelanguage, languageiso, countrycode,  isbaselanguage, issystemlanguage ) VALUES ('ar_BH', 'Y', 'Arabic (Bahrain)', 'ar', 'BH', 'N', 'N' );

@@ -258,3 +258,10 @@ CREATE TABLE cb_customer
 --COMMENT='Tabla donde se almacenarán los clientes de las diferentes empresas, se entiende cliente como aquel que compra a una empresa.';
 --GRANT ALL ON TABLE cb_customer TO xulescode;
 
+
+CREATE TABLE cb_persona
+(
+  idpersona INT PRIMARY KEY IDENTITY(1,1),--AUTO_INCREMENT,
+  nombre VARCHAR(150),
+  apellido VARCHAR(100),
+)
